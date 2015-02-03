@@ -12,20 +12,29 @@ namespace COMP_123_Lesson05
         {
              string[] carMakelist = {"Honda", "BMW" , "Mercedes", "Jeep" , "Ford"};
 
-             string[] tempCarMakeList = new string[3];
+             string[] tempCarMakeList = new string[4];
 
              Random rnd = new Random();
 
 
              int randomCar;
 
-             randomCar = rnd.Next(6);
-             Console.WriteLine("My Random car is {0}", randomCar);
+            
+
+             
 
             // Assign cells from one array to another
              for (int index = 0; index < tempCarMakeList.Length; index ++)
              {
-                 tempCarMakeList[index] = carMakelist[index];
+                 randomCar = generateRandomCar(rnd);
+
+                 if (carMakelist[randomCar] != "unavailable")
+                 {
+
+                     tempCarMakeList[index] = carMakelist[randomCar];
+
+                    carMakelist[randomCar] = "unavailable";
+                 }
              }
 
                  //string[] carMakelist = new string[10];
@@ -45,7 +54,12 @@ namespace COMP_123_Lesson05
                  carMakelist[5] = "Jaguar";
                   */
 
+             Console.WriteLine("++++++++++++++++++++++++++++++++++");
+             Console.WriteLine("+    Original    New Car List    +");
+             Console.WriteLine("++++++++++++++++++++++++++++++++++");
             // Output the value of the each cell in each array
+
+
                  for (int index = 0; index < carMakelist.Length; index++)
                  {
                      Console.WriteLine(carMakelist[index]);
@@ -53,6 +67,8 @@ namespace COMP_123_Lesson05
                      
                  }
 
+                 Console.WriteLine("++++++++++++++++++++++++++++++++++");
+                 Console.WriteLine("+     New     New Car List       +");
                  Console.WriteLine("++++++++++++++++++++++++++++++++++");
 
                  for (int index = 0; index < tempCarMakeList.Length; index++)
@@ -81,6 +97,17 @@ namespace COMP_123_Lesson05
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
             
+        }
+
+        private static int generateRandomCar(Random rnd)
+        {
+            int randomCar;
+                
+                randomCar = rnd.Next(5);
+            
+            Console.WriteLine("My Random car is {0}", randomCar); //Debugging line
+
+            return randomCar;
         }
     }
 }
